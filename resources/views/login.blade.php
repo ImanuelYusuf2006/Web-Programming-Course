@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.master')
+@section('title', 'Login Page')
 
-<head>
-    <title>Login</title>
-    <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']);
-    ?>
-</head>
-
-<body>
-    @include('layouts.navbar')
+@section('content')
     <div class="row">
         <div class="col-6 bg-secondary">
 
@@ -39,7 +32,8 @@
                 </div>
             </div>
         </div>
+        <a href="{{ route('home') }}">Home Page</a>
     </div>
-</body>
+@endsection
 
 </html>

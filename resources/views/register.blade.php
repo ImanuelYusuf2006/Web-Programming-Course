@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.master')
+@section('title', 'Register Page')
 
-<head>
-    <title>Register</title>
-    <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']);
-    ?>
-</head>
-
-<body>
-    @include('layouts.navbar')
+@section('content')
     <div class="row">
         <div class="col-6 bg-secondary">
 
         </div>
         <div class="d-flex col-6 vh-100 items-center justify-content-center">
             <div class="card p-4 m-5" style="width: 400px">
-                <h2>Login</h2>
+                <h2>Register</h2>
                 <form>
                     <div class="mt-2">
                         <label>Username</label>
@@ -33,6 +26,6 @@
             </div>
         </div>
     </div>
-</body>
+@endsection
 
 </html>
