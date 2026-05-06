@@ -1,23 +1,28 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Student\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function(){
-    return view('login');
-})->name('login');
+// Route::get('/login', function(){
+//     return view('login');
+// })->name('login');
 
-Route::post('/login', function(){
-    return view('login');
-})->name('login.do');
 
-Route::get('/register', function(){
-    return view('register');
-})->name('register.view');
+// Route::get('/register', function(){
+    //     return view('register');
+    // })->name('register.view');
+    
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.do');
+
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 
 Route::prefix('product')->group(function(){
     Route::get('/list', function(){
@@ -32,47 +37,6 @@ Route::redirect('/kontak-kami', '/register');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
-Route::get('/home', function(){
-    $students = [
-        [
-            'id' => 1,
-            'name' => 'Tony Stark',
-            'score' => [97, 95, 90]
-        ],
-        [
-            'id' => 2,
-            'name' => 'Steve Rogers',
-            'score' => [15, 88, 92]
-        ],
-        [
-            'id' => 3,
-            'name' => 'Bruce Banner',
-            'score' => [90, 20, 88]
-        ],
-    ];
-    return view('home', compact('students'));
-})->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/home/{id}', function($id){
-    $students = [
-        [
-            'id' => 1,
-            'name' => 'Tony Stark',
-            'score' => [97, 95, 90]
-        ],
-        [
-            'id' => 2,
-            'name' => 'Steve Rogers',
-            'score' => [15, 88, 92]
-        ],
-        [
-            'id' => 3,
-            'name' => 'Bruce Banner',
-            'score' => [90, 20, 88]
-        ],
-    ];
-
-    $data = collect($students)->firstWhere('id', $id);
-    
-    return view('students.detail', compact('data'));
-})->name('students.detail');
+Route::get('/studeny/{id}', [StudentController::class, 'index'])->name('students.detail');

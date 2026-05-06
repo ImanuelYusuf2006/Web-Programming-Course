@@ -9,30 +9,37 @@
         <div class="d-flex col-6 vh-100 items-center justify-content-center">
             <div class="card p-4 m-5" style="width: 400px">
                 <h2>Login</h2>
-                <form>
+                <form action="{{ route('login.do') }}" method="POST">
+                    @csrf
                     <div class="mt-2">
                         <label>Username</label>
-                        <input type="text" class="form-control">
+                        <input value="{{ old('username') }}" name="username" type="text" class="form-control">
                     </div>
                     <div class="mt-2">
                         <label>Password</label>
-                        <input type="password" class="form-control">
+                        <input value="{{ old('password') }}" name="password" type="password" class="form-control">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex gap-1">
+                            <input type="checkbox">
+                            <label class="form-label m-0">Remember Me</label>
+                        </div>
+                        <a href="">Forgot Password</a>
+                    </div>
+                    @if (session('error_message'))
+                        <div class="alert alert-danger mt-3">
+                            {{ session('error_message') }}
+                        </div>
+                    @endif
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" href="{{ route('login') }}" class="btn btn-primary mt-2">Login</button>
+                        <button type="submit" href="{{ route('register') }}" class="btn btn-primary mt-2">Register
+                            Now</button>
                     </div>
                 </form>
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex gap-1">
-                        <input type="checkbox">
-                        <label class="form-label m-0">Remember Me</label>
-                    </div>
-                    <a href="">Forgot Password</a>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <a href="{{ route('login') }}" class="btn btn-primary mt-2">Login</a>
-                    <a href="{{ route('register.view') }}" class="btn btn-primary mt-2">Register Now</a>
-                </div>
+                <a href="{{ route('home') }}">Home Page</a>
             </div>
         </div>
-        <a href="{{ route('home') }}">Home Page</a>
     </div>
 @endsection
 
