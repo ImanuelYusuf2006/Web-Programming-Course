@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Students extends Model
 {
@@ -20,7 +19,7 @@ class Students extends Model
 
     public function getAverage() : float {
         if($this->relationLoaded('student_scores')) {
-            $count = $this->scores->count();
+            $count = $this->student_scores->count();
             if($count == 0){
                 return 0;
             }
