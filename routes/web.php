@@ -39,4 +39,8 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/studeny/{id}', [StudentController::class, 'index'])->name('students.detail');
+Route::prefix('students')->name('students.')->group(function(){
+    Route::get('/create', [StudentController::class, 'showCreate'])->name('create');
+    Route::post('/create', [StudentController::class, 'insertStudent'])->name('insert');
+    Route::get('/{id}', [StudentController::class, 'index'])->name('detail');
+    });

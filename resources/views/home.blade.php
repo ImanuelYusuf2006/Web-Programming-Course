@@ -4,6 +4,7 @@
 @section('content')
 @include('layouts.navbar')
     <div class="container">
+        <a href="{{ route('students.create') }}" class="btn btn-primary my-4">Add New Student</a>
         <table class="table table-dark table-hover">
             
             <thead>
@@ -22,10 +23,10 @@
                         <td><a href="{{ route('students.detail', ['id' => $student['id']]) }}">{{ $student['name'] }}</a></td>
 
                         @php
-                            $average = array_sum($student['score']) / count($student['score']);
+                            $average = $student->getAverage()
                         @endphp
 
-                        <td>{{ number_format($average, 5) }}</td>
+                        <td>{{ $average }}</td>
                         <td>
                             @if ($average > 90)
                                 <span class="badge bg-success">Lulus</span>
