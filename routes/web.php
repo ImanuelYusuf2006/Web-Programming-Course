@@ -42,5 +42,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('students')->name('students.')->group(function(){
     Route::get('/create', [StudentController::class, 'showCreate'])->name('create');
     Route::post('/create', [StudentController::class, 'insertStudent'])->name('insert');
-    Route::get('/{id}', [StudentController::class, 'index'])->name('detail');
+    Route::get('/update/{id}', [StudentController::class, 'showEdit'])->name('edit');
+    Route::patch('/update/{id}', [StudentController::class, 'updateStudent'])->name('update');
+    Route::delete('/delete/{id}', [StudentController::class, 'deleteStudent'])->name('delete');
+    Route::post('/score/insert', [StudentController::class, 'insertScore'])->name('scores.insert');
+    Route::get('/{id}', [StudentController::class, 'detail'])->name('detail');
     });

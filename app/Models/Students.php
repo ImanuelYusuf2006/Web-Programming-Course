@@ -18,15 +18,15 @@ class Students extends Model
     }
 
     public function getAverage() : float {
-        if($this->relationLoaded('student_scores')) {
+        // if($this->relationLoaded('student_scores')) {
             $count = $this->student_scores->count();
             if($count == 0){
                 return 0;
             }
 
             return round($this->student_scores->average('score'), 2);
-        }
+        // }
 
-        return 0;
+        // return 0;
     }
 }

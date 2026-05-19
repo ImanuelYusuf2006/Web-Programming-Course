@@ -5,7 +5,7 @@
 @include('layouts.navbar')
     <div class="container">
         <a href="{{ route('students.create') }}" class="btn btn-primary my-4">Add New Student</a>
-        <table class="table table-dark table-hover">
+        <table class="table table-bordered">
             
             <thead>
                 <tr>
@@ -13,6 +13,7 @@
                     <th>Name</th>
                     <th>Average Score</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -33,6 +34,16 @@
                             @else
                                 <span class="badge bg-danger">Tidak Lulus</span>
                             @endif
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('students.edit', $student['id']) }}" class="btn btn-sm btn-outline-warning">Edit</a>
+                                <form action="{{ route('students.delete', $student['id']) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete Student Data?')">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
