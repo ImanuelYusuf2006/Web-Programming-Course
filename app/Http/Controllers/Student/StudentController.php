@@ -24,8 +24,16 @@ class StudentController extends Controller
     }
 
     public function insertStudent(Request $request){
-        $name = $request->input('student_name');
-        $nim = $request->input('student_nim');
+        // $name = $request->input('student_name');
+        // $nim = $request->input('student_nim');
+
+        $validated = $request->validate([
+            'student_name' => ['required'],
+            'student_nim' => ['required', 'numeric', 'unique:students,nim'],
+        ]);
+
+        $name = $validated['student_name'];
+        $nim = $validated['student_nim'];
 
         $process = Students::create([
             'name' => $name,
@@ -35,7 +43,8 @@ class StudentController extends Controller
         if($process){
             return redirect()->route('home');
         } else {
-            return back()->withInput();
+            // return back()->withInput()->with('error_message', 'Terjadi kesalahan saat insert');
+            return back()->withInput()->withErrors(['error_message' => 'Terjadi kesalahan saat insert']);
         }
     }
 
@@ -50,8 +59,13 @@ class StudentController extends Controller
     }
 
     public function updateStudent($id, Request $request){
-        $new_name = $request->input('student_name');
-        $new_nim = $request->input('student_nim');
+        $validated = $request->validate([
+            'student_name' => ['required'],
+            'student_nim' => ['required', 'numeric', 'unique:students,nim'],
+        ]);
+
+        $new_name = $validated('student_name');
+        $new_nim = $validated('student_nim');
 
         $student = Students::where('id', $id)->first();
         if($student == null){

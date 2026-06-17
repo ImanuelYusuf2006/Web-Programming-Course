@@ -18,11 +18,12 @@ Route::get('/', function () {
 // Route::get('/register', function(){
     //     return view('register');
     // })->name('register.view');
-    
+
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.do');
 
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.do');
 
 Route::prefix('product')->group(function(){
     Route::get('/list', function(){

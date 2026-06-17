@@ -9,13 +9,13 @@
                 @csrf
                 <div>
                     <label class="form-label">Student Name</label>
-                    <input type="text" name="student_name" class="form-control" id="student_name" required>
+                    <input type="text" name="student_name" class="form-control" id="student_name">
                 </div>
                 <div>
                     <label class="form-label">Student Number</label>
-                    <input type="text" name="student_nim" class="form-control" id="student_nim" required>
+                    <input type="text" name="student_nim" class="form-control" id="student_nim">
                 </div>
-
+                @include('components.error_message')
                 <button type="submit" class="btn btn-danger mt-4">Add Student</button>
             </form>
         </div>

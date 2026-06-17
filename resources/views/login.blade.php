@@ -26,11 +26,18 @@
                         </div>
                         <a href="">Forgot Password</a>
                     </div>
-                    @if (session('error_message'))
+                    {{-- @if (session('error_message')) --}}
+                    {{-- @if ($errors->any())
                         <div class="alert alert-danger mt-3">
-                            {{ session('error_message') }}
-                        </div>
-                    @endif
+                            {{-- {{ session('error_message') }} --}}
+                            {{-- <ul class="mb-8">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div> --}}
+                    {{-- @endif --}}
+                    <x-error_message></x-error_message>
                     <div class="d-flex justify-content-between">
                         <button type="submit" href="{{ route('login') }}" class="btn btn-primary mt-2">Login</button>
                         <button type="submit" href="{{ route('register') }}" class="btn btn-primary mt-2">Register
