@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Courses;
 use App\Models\Scores;
 use App\Models\Students;
+use App\Services\ScorePredictionService;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Http\Request;
 
@@ -127,5 +128,23 @@ class StudentController extends Controller
             return redirect()->route('students.detail', $student_id);
         }
         return back()->withInput();
+    }
+
+    public function predictScore($id, ScorePredictionService $classifier){
+        // $classifier = ScorePredictionService::class;
+
+        $scores = Scores::where('student_id', $id)->get();
+        $attendance = $scores->avg('attendance');
+        $assignment = $scores->avg('assignment');
+        $mid_exam = $scores->avg('mid_exam');
+        $final_exam = $scores->avg('final_exam');
+
+        $result = $classifier->predict($attendance, $assignment, $mid_exam, $final_exam);
+
+        $student = Students::where('id', $id)->first();
+        $update['prediction'] = $result;
+        $student->update($update);
+
+        return redirect()->route('students.detail', $id);
     }
 }

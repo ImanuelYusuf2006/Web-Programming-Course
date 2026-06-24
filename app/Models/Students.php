@@ -11,6 +11,7 @@ class Students extends Model
     protected $fillable = [
         'name',
         'nim',
+        'prediction'
     ];
 
     public function student_scores(){

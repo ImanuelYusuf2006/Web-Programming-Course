@@ -47,5 +47,6 @@ Route::prefix('students')->name('students.')->group(function(){
     Route::patch('/update/{id}', [StudentController::class, 'updateStudent'])->name('update');
     Route::delete('/delete/{id}', [StudentController::class, 'deleteStudent'])->name('delete');
     Route::post('/score/insert', [StudentController::class, 'insertScore'])->name('scores.insert');
+    Route::post('/predict/{id}', [StudentController::class, 'predictScore'])->name('predict');
     Route::get('/{id}', [StudentController::class, 'detail'])->name('detail');
     });

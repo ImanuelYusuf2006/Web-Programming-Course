@@ -8,8 +8,8 @@
             <div class="card-body">
                 <h2 class="h5">Name : {{ $data['name'] }}</h2>
                 <h2 class="h5">NIM : {{ $data['nim'] }}</h2>
-                <h2 class="h5">Status : {{ $data['prediction'] }}</h2>
-                <form action="" method="POST">
+                <h2 class="h5">Status : {{ is_null($data['prediction']) ? '-' : ($data['prediction'] == 1 ? 'Telat' : 'Tidak Telat') }}</h2>
+                <form action="{{ route('students.predict', $data['id']) }}" method="POST">
                     @csrf
                     <button class="btn btn-sm btn-info">Predict Status</button>
                 </form>
