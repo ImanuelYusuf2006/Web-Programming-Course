@@ -8,6 +8,11 @@
             <div class="card-body">
                 <h2 class="h5">Name : {{ $data['name'] }}</h2>
                 <h2 class="h5">NIM : {{ $data['nim'] }}</h2>
+                <h2 class="h5">Status : {{ $data['prediction'] }}</h2>
+                <form action="" method="POST">
+                    @csrf
+                    <button class="btn btn-sm btn-info">Predict Status</button>
+                </form>
             </div>
         </div>
 
@@ -17,7 +22,8 @@
                 <form action="{{ route('students.scores.insert') }}" method="POST" class="row">
                     @csrf
                     <input name="student_id" type="hidden" value="{{ $data['id'] }}">
-                    <div class="col md-4">
+                    <div class="row g-3">
+                    <div class="col-md-4">
                         <label class="form-label">Course</label>
                         <select name="course_id" class="form-control" required>
                             <option value="" disabled selected>-- Select Course --</option>
@@ -26,10 +32,27 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col md-4">
+                    <div class="col-md-4">
+                        <label class="form-label">Attendance Percentage (0 - 100)</label>
+                        <input type="number" name="attendance" class="form-control" min="0" max="100" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Assignment (0 - 100)</label>
+                        <input type="number" name="assignment" class="form-control" min="0" max="100" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mid Exam (0 - 100)</label>
+                        <input type="number" name="mid_exam" class="form-control" min="0" max="100" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Final Exam (0 - 100)</label>
+                        <input type="number" name="final_exam" class="form-control" min="0" max="100" required>
+                    </div>
+                    <div class="col-md-4">
                         <label class="form-label">Score (0 - 100)</label>
                         <input type="number" name="score" class="form-control" min="0" max="100" required>
                     </div>
+                </div>
                     <div class="col-12 mt-3">
                         <button type="submit" class="btn btn-success">Save Score</button>
                     </div>
@@ -43,6 +66,10 @@
                     <thead class="table-dark">
                         <tr>
                             <th>Course</th>
+                            <th>Attendance</th>
+                            <th>Assignment</th>
+                            <th>Mid Exam</th>
+                            <th>Final Exam</th>
                             <th>Score</th>
                             <th>Grade</th>
                             <th>Action</th>
@@ -75,6 +102,10 @@
                             </li> --}}
                             <tr>
                                 <td>{{ $score->course->code }} - {{ $score->course->name }}</td>
+                                <td>{{ $score->attendance }}%</td>
+                                <td>{{ $score->assignment }}</td>
+                                <td>{{ $score->mid_exam }}</td>
+                                <td>{{ $score->final_exam }}</td>
                                 <td>{{ $score->score }}</td>
                                 <td>{{ $grade }}</td>
                                 <td>Action</td>

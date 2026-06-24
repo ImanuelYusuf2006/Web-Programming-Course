@@ -12,6 +12,10 @@ class Scores extends Model
         'student_id',
         'course_id',
         'score',
+        'attendance',
+        'assignment',
+        'mid_exam',
+        'final_exam',
     ];
 
     public function student(){

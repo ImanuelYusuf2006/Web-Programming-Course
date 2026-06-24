@@ -17,14 +17,14 @@ return new class extends Migration
             $table->string('nim', 12);
             $table->timestamps();
         });
-        
+
         Schema::create('courses', function(Blueprint $table){
             $table->id();
             $table->string('name');
             $table->string('code');
             $table->timestamps();
         });
-        
+
         Schema::create('scores', function(Blueprint $table){
             $table->id();
             $table->foreignId('student_id');
@@ -39,8 +39,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');;
-        Schema::dropIfExists('courses');;
-        Schema::dropIfExists('scores');;
+        Schema::dropIfExists('students');
+        Schema::dropIfExists('courses');
+        Schema::dropIfExists('scores');
     }
 };

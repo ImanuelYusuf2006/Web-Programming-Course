@@ -107,11 +107,20 @@ class StudentController extends Controller
         $student_id = $request->input('student_id');
         $course_id = $request->input('course_id');
         $score = $request->input('score');
+        $attendance = $request->input('attendance');
+        $assignment = $request->input('assignment');
+        $mid_exam = $request->input('mid_exam');
+        $final_exam = $request->input('final_exam');
+
 
         $insertData = Scores::create([
             'student_id' => $student_id,
             'course_id' => $course_id,
             'score' => $score,
+            'attendance' => $attendance,
+            'assignment' => $assignment,
+            'mid_exam' => $mid_exam,
+            'final_exam' => $final_exam,
         ]);
 
         if($insertData){
