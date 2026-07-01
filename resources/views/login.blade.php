@@ -8,7 +8,7 @@
         </div>
         <div class="d-flex col-6 vh-100 items-center justify-content-center">
             <div class="card p-4 m-5" style="width: 400px">
-                <h2>Login</h2>
+                <h2>{{ __('main.login') }}</h2>
                 <form action="{{ route('login.do') }}" method="POST">
                     @csrf
                     <div class="mt-2">
@@ -22,9 +22,9 @@
                     <div class="d-flex justify-content-between">
                         <div class="d-flex gap-1">
                             <input type="checkbox">
-                            <label class="form-label m-0">Remember Me</label>
+                            <label class="form-label m-0">Remenber Me</label>
                         </div>
-                        <a href="">Forgot Password</a>
+                        <a>Forgot Password?</a>
                     </div>
                     {{-- @if (session('error_message')) --}}
                     {{-- @if ($errors->any())
@@ -39,9 +39,8 @@
                     {{-- @endif --}}
                     <x-error_message></x-error_message>
                     <div class="d-flex justify-content-between">
-                        <button type="submit" href="{{ route('login') }}" class="btn btn-primary mt-2">Login</button>
-                        <button type="submit" href="{{ route('register') }}" class="btn btn-primary mt-2">Register
-                            Now</button>
+                        <button type="submit" href="{{ route('login') }}" class="btn btn-primary mt-2">{{ __('main.login') }}</button>
+                        <button type="submit" href="{{ route('register') }}" class="btn btn-primary mt-2">{{ __('main.register') }}</button>
                     </div>
                 </form>
                 <a href="{{ route('home') }}">Home Page</a>

@@ -30,9 +30,9 @@
                         <td>{{ $average }}</td>
                         <td>
                             @if ($average > 90)
-                                <span class="badge bg-success">Lulus</span>
+                                <span class="badge bg-success">{{ __('main.student.status_oke') }}</span>
                             @else
-                                <span class="badge bg-danger">Tidak Lulus</span>
+                                <span class="badge bg-danger">{{ __('main.student.status_fail') }}</span>
                             @endif
                         </td>
                         <td>
